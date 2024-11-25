@@ -1,0 +1,85 @@
+<div class="container mt-5">
+    <h2>Gestión de Usuarios y Roles</h2>
+  
+    <!-- Formulario para agregar un nuevo usuario -->
+    <div class="card mt-4">
+      <div class="card-body">
+        <h5 class="card-title">Crear Usuario</h5>
+        <form (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="document" class="form-label">Documento de identidad</label>
+            <input type="text" class="form-control" id="document" name="document" required>
+          </div>
+          <div class="mb-3">
+            <label for="username" class="form-label">Nombre de Usuario</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+          </div>
+          <div class="mb-3">
+            <label for="role" class="form-label">Rol</label>
+            <select class="form-select" name="role" required (ngModelChange)="onRoleChange($event)">
+              <option value="conductor">Conductor</option>
+              <option value="administrador">Administrador</option>
+              <option value="bodega">Personal de Bodega</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input [type]="isPasswordVisible ? 'text' : 'password'"  class="form-control" id="password" name="password" value="{{generatedPassword}}" required> <br>
+            <button  type="button" class="btn btn-outline-secondary" (click)="togglePasswordVisibility()">
+                 {{ isPasswordVisible ? 'Ocultar contraseña' : 'Mostrar contraseña' }}
+            </button>
+          </div>
+          <button type="submit" class="btn btn-primary">Crear Usuario</button>
+        </form>
+      </div>
+    </div>
+  
+    <!-- Tabla de usuarios -->
+    <div class="card mt-4">
+      <div class="card-body">
+        <h5 class="card-title">Lista de Usuarios</h5>
+        <table class="table table-bordered">
+          <thead>
+          </thead>
+          <table class="table">
+            <tbody>
+              <!-- Iterar sobre los usuarios -->
+              @for (user of users; track user.username; let i = $index) {
+                <tr>
+                  <td colspan="4" class="fw-bold">Documento:</td>
+                  <td>{{ user.document }}</td>
+                </tr>
+                <tr>
+                  <td colspan="4" class="fw-bold">Usuario:</td>
+                  <td>{{ user.username }}</td>
+                </tr>
+                <tr>
+                  <td colspan="4" class="fw-bold">Rol:</td>
+                  <td>
+                    <select class="form-select" (ngModelChange)="onRoleChange($event)">
+                      <option value="conductor">Conductor</option>
+                      <option value="administrador">Administrador</option>
+                      <option value="bodega">Personal de Bodega</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="4">
+                    <button class="btn btn-danger" (click)="deleteUser(i)">Eliminar</button>
+                  </td>
+                </tr>
+                <!-- Línea divisoria opcional entre usuarios -->
+                <tr>
+                  <td colspan="4">
+                    <hr>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+          
+        </table>
+      </div>
+    </div>
+  </div>
+  

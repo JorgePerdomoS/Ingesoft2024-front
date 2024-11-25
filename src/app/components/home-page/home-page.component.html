@@ -1,0 +1,13 @@
+<div class="position-relative">
+    <img src="https://pbs.twimg.com/media/F2zWI05XMAA-RRQ?format=jpg&name=4096x4096" alt="Mapa Bogotá" class="img-fluid">
+
+    <button 
+    *ngFor="let point of points"
+    type="button" 
+    class="btn btn-danger  btn-sm position-absolute" 
+    [style.top.%]="point.top"
+    [style.left.%]="point.left"
+    data-bs-toggle="tooltip" 
+    [attr.title]="point.tooltip">
+  </button>
+</div>

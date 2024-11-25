@@ -1,0 +1,44 @@
+@if(showNavbar){
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <!-- Botón de hamburguesa -->
+        <button 
+          class="navbar-toggler" 
+          type="button" 
+          data-bs-toggle="collapse" 
+          data-bs-target="#navbarNav" 
+          aria-controls="navbarNav" 
+          aria-expanded="false" 
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <!-- Logo -->
+        <a class="navbar-brand" href="home">TransPoli</a>
+    
+        <!-- Contenido colapsable -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="home">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="role-managment">Gestión de Usuarios y Roles</a>
+            </li>  
+            <li class="nav-item">
+              <a class="nav-link" href="form-entrega">Formulario para Reportar la Entrega</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="reporte-entrega">Desempeño de la Flota</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="vehiculos">Gestión de Cargas por Vehículo</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="evaluación">Evaluación Conductor</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  }

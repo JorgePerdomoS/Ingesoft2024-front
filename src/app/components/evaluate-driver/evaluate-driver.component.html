@@ -1,0 +1,48 @@
+<div class="container mt-5">
+    <h2>Evaluación Conductor</h2>
+    <form #entregaForm="ngForm" (ngSubmit)="onSubmit(entregaForm)" class="mt-4">
+  
+      <div class="mb-3">
+        <label for="carga" class="form-label">Tiempos de entrega</label>
+        <select id="driver" class="form-select" required>
+            <option *ngFor="let conductor of conductores" value="{{conductor}}">{{conductor}}</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="carga" class="form-label">Tiempos de entrega</label>
+        <select id="time-delivery" class="form-select" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="carga" class="form-label">Eficiencia</label>
+        <select id="efficiency" class="form-select" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="carga" class="form-label">Cumplimiento de rutas</label>
+        <select id="compliance" class="form-select" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="!entregaForm.valid">Enviar</button>
+    </form>
+  </div>
+  

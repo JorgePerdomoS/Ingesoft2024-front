@@ -1,0 +1,95 @@
+<div class="container mt-5">
+    <h2>Desempeño de la Flota</h2>
+    <div class="row mt-4">
+      <!-- Tiempos Promedio de Entrega -->
+      <div class="col-md-6 mb-4">
+        <h4>Tiempos Promedio de Entrega</h4>
+        <div style="max-height: 400px;">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Conductor</th>
+                <th>Promedio en horas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let tiempo of tiemposPromedio">
+                <td>{{ tiempo.conductor }}</td>
+                <td>{{ tiempo.promedio }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  
+      <!-- Accidentes Comunes -->
+      <div class="col-md-6 mb-4">
+        <h4>Accidentes Comunes</h4>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Tipo de Accidente</th>
+              <th>Cantidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let accidente of accidentes">
+              <td>{{ accidente.tipo }}</td>
+              <td>{{ accidente.cantidad }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <div class="row">
+      <!-- Rendimiento de los Conductores -->
+      <div class="col-md-6 mb-4">
+        <h4>Rendimiento de los Conductores</h4>
+        <div style="max-height: 400px;">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Conductor</th>
+                <th>Promedio de calificación</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let calificacion of calificaciones">
+                <td>{{ calificacion.conductor }}</td>
+                <td>{{ calificacion.promedioCalificacion}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  
+      <!-- Estado de las Cargas -->
+      <div class="col-md-6 mb-4">
+        <h4>Estado de las Cargas</h4>
+        <div style="max-height: 400px;">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Nombre del cargamento</th>
+                <th>Estado</th>
+                <th>Temperatura</th>
+                <th>Conductor Asignado</th>
+                <th>Recepcionado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cargas of estadoCargas">
+                <td>{{ cargas.nombreCargamento }}</td>
+                <td>{{ cargas.estado }}</td>
+                <td>{{ cargas.temperatura }}</td>
+                <td>{{ cargas.conductorAsignado }}</td>
+                <td>{{ cargas.recepcionado }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
