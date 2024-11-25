@@ -17,6 +17,8 @@ import { EvaluateDriverComponent } from './components/evaluate-driver/evaluate-d
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import {EvaluateDriver} from './services/evaluate-driver';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,7 @@ import { RouterModule } from '@angular/router';
     FormularioEntregaComponent,
     ReportesFlotaComponent,
     VehicleLoadsComponent,
-    EvaluateDriverComponent,        
+    EvaluateDriverComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,12 +40,14 @@ import { RouterModule } from '@angular/router';
     UserRoleManagementComponent,
     ReactiveFormsModule,
     RouterModule,
+    HttpClientModule,
     ToastrModule.forRoot({
     })
   ],
   providers: [
     FlotaVehiculosService,
-    provideClientHydration(withEventReplay())
+    provideClientHydration(withEventReplay()),
+    EvaluateDriver
   ],
   bootstrap: [AppComponent]
 })

@@ -23,9 +23,9 @@ export class AuthService {
   login(username: string, password: string) {
     // Aquí puedes tener tu lógica para validar contra una base de datos o API
     const users = [
-      { id: 1, username: 'admin', password: 'admin123', rol: 'Administrador' },
-      { id: 2, username: 'conductor', password: 'user123', rol: 'Conductor' },
-      { id: 3, username: 'bodega', password: 'user123', rol: 'Bodega' },
+      { idConductor: '345678901', username: 'admin', password: 'admin123', rol: 'Administrador' },
+      { idConductor: '345678901', username: 'conductor', password: 'user123', rol: 'Conductor' },
+      { idConductor: '345678901', username: 'bodega', password: 'user123', rol: 'Bodega' },
     ];
 
     const user = users.find((u) => u.username === username && u.password === password);

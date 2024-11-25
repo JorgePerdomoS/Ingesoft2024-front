@@ -1,20 +1,22 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import {EvaluateDriver} from '../../services/evaluate-driver';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-evaluate-driver',
   standalone: false,
-  
+
   templateUrl: './evaluate-driver.component.html',
   styleUrl: './evaluate-driver.component.css'
 })
 export class EvaluateDriverComponent {
 
   form: FormGroup;
-  idConductor: string = '123456789'
+  idConductor: string = ''
 
-  constructor(private toastr: ToastrService) {
+  constructor(private toastr: ToastrService, private evaluateDriver: EvaluateDriver, private authService: AuthService) {
     this.form = new FormGroup({
       selectTimeDelivery: new FormControl(0, [Validators.required]),
       efficiency: new FormControl(0, [Validators.required]),
@@ -34,22 +36,25 @@ export class EvaluateDriverComponent {
     const timeDelivery = parseInt(this.form.controls['selectTimeDelivery'].value);
     const efficiency = parseInt(this.form.controls['efficiency'].value);
     const selectTimeDelivery = parseInt(this.form.controls['compliance'].value);
-    const formSend: object[] = []
+    let formSend: object = {}
     const promedio = (timeDelivery + efficiency + selectTimeDelivery) / 3;
+    this.idConductor = this.authService.currentUserValue.idConductor;
     if (this.form.valid) {
-      formSend.push({
-        idConductor: this.idConductor,
-        promedio: promedio
+      formSend = {
+        conductorId: this.idConductor,
+        calificacion: promedio
+      }
+
+      this.evaluateDriver.postEvaluateDriver(formSend).subscribe((response) => {
+        debugger
+        if (response.status == 1){
+          this.toastr.success('Formulario enviado con éxito')
+          this.form.reset();
+        } else {
+          this.toastr.error('Error al enviar formulario')
+          this.form.reset();
+          }
       })
-      this.toastr.success('Formulario enviado con éxito')
-      this.form.reset();
-    } else {
-      this.toastr.error('Error al enviar formulario')
-      this.form.reset();
     }
   }
-
-
-  
-
 }
