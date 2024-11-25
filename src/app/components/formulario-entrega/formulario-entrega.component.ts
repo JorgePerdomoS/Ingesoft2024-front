@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import e from 'express';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-formulario-entrega',
@@ -8,11 +12,27 @@ import { Component } from '@angular/core';
   styleUrl: './formulario-entrega.component.css'
 })
 export class FormularioEntregaComponent {
-  onSubmit(form: any) {
-    if (form.valid) {
-      console.log('Formulario Enviado', form.value);
+  form: FormGroup;
+  idUser: number = 0;
+
+  constructor(private toastr: ToastrService, private authService: AuthService){
+    this.form = new FormGroup({
+      idUser: new FormControl(this.idUser),
+      destino: new FormControl('', [Validators.required]),
+      estado: new FormControl('', [Validators.required]),
+      entrega: new FormControl('', Validators.required)
+    })
+  }
+
+  onSubmit() {
+    if (this.form.valid) {
+      this.idUser = this.authService.currentUserValue.id;
+      console.log(this.form.controls);
+      this.form.reset();
+      this.toastr.success('Formulario enviado con éxito')
     } else {
-      console.log('Formulario inválido');
+      this.form.reset();
+      this.toastr.error('Formulario inválido');
     }
   }
 }

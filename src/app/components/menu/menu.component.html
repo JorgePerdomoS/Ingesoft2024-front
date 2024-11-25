@@ -22,20 +22,23 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="home">Inicio</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="isAdmin">
               <a class="nav-link" href="role-managment">Gestión de Usuarios y Roles</a>
             </li>  
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="isAdmin || isDriver">
               <a class="nav-link" href="form-entrega">Formulario para Reportar la Entrega</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="isAdmin || isStorage">
               <a class="nav-link" href="reporte-entrega">Desempeño de la Flota</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="isAdmin || isStorage">
               <a class="nav-link" href="vehiculos">Gestión de Cargas por Vehículo</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="isAdmin || isStorage">
               <a class="nav-link" href="evaluación">Evaluación Conductor</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="" (click)="logOut()">Salir</a>
             </li>
           </ul>
         </div>

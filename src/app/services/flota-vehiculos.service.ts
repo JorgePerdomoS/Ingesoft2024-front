@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../enviroments/enviroment';
 
 interface Vehiculo {
   id: number;
@@ -15,7 +16,7 @@ interface Vehiculo {
 })
 export class FlotaVehiculosService {
 
-  private apiUrl = 'http://localhost:3000/api/vehiculos';  // URL del backend
+  private apiUrl = environment+'/api/vehiculos';  // URL del backend
 
   constructor(private http: HttpClient) {}
 

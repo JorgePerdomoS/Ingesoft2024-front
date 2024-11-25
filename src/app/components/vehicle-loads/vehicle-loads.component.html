@@ -18,26 +18,16 @@
         <div class="card-body">
           <h5 class="card-title">{{ load.description }}</h5>
           <p class="card-text">Estado: 
-            <span [ngClass]="{'text-success': load.status === 'completed', 'text-warning': load.status === 'in-progress'}">
-              {{ load.status === 'completed' ? 'Completada' : 'En Proceso' }}
+            <span [ngClass]="{'text-success': load.deliveryVerified === true, 'text-warning': load.deliveryVerified === false}">
+              {{ load.deliveryVerified === true ? 'Completada' : 'En Proceso' }}
             </span>
           </p>
   
           <p *ngIf="load.temperature !== undefined">Temperatura: {{ load.temperature }}°C</p>
   
-          <div class="form-group">
-            <label for="status">Actualizar Estado:</label>
-            <select class="form-select" id="status" [(ngModel)]="load.status" (ngModelChange)="updateLoadStatus(load, load.status)">
-              <option value="in-progress">En Proceso</option>
-              <option value="completed">Completada</option>
-            </select>
-          </div>
-  
           <div class="form-group mt-2">
             <label for="temperature">Conductor asignado:</label>
-            <select class="form-select" id="conductor">
-              <option *ngFor="let conductor of conductores" value="{{conductor}}">{{conductor}}</option>
-            </select>
+            <p>{{load.driver}}</p>
           </div>
 
           <button type="button" class="btn btn-primary form-group mt-2" data-bs-toggle="modal" data-bs-target="#imageModal" (click)="showRandomImage()">
@@ -50,7 +40,7 @@
           </div>
         </div>
       </div>
-      <button class="btn btn-primary mb-3" (click)="addLoadToVehicle(selectedVehicle, 'Nueva Carga')">Agregar Carga</button>
+      <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#cargoModal">Agregar Carga</button>
     </div>
   </div>
 
@@ -66,6 +56,45 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="cargoModal" tabindex="-1" aria-labelledby="cargoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cargoModalLabel">Registrar Carga</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulario dentro del modal -->
+          <form [formGroup]="cargoForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="nombreCarga" class="form-label">Nombre de la Carga</label>
+              <input type="text" id="nombreCarga" class="form-control" formControlName="nombreCarga" required>
+            </div>
+  
+            <div class="mb-3">
+              <label for="temperatura" class="form-label">Temperatura</label>
+              <input type="number" id="temperatura" class="form-control" formControlName="temperatura" required>
+            </div>
+  
+            <div class="mb-3">
+              <label for="conductor" class="form-label">Seleccionar Conductor</label>
+              <select class="form-select" id="conductor" formControlName="conductor" required>
+                <option *ngFor="let conductor of conductores" value="{{conductor}}">{{conductor}}</option>
+              </select>
+            </div>
+  
+            <div class="mb-3 form-check">
+              <input type="checkbox" id="confirmarRecepcion" class="form-check-input" formControlName="confirmarRecepcion">
+              <label for="confirmarRecepcion" class="form-check-label">Confirmar recepción</label>
+            </div>
+  
+            <button type="submit" class="btn btn-primary" [disabled]="cargoForm.invalid">Guardar</button>
+          </form>
         </div>
       </div>
     </div>

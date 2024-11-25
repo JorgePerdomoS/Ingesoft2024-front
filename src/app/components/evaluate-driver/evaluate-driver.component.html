@@ -1,6 +1,6 @@
 <div class="container mt-5">
     <h2>Evaluación Conductor</h2>
-    <form #entregaForm="ngForm" (ngSubmit)="onSubmit(entregaForm)" class="mt-4">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="mt-4">
   
       <div class="mb-3">
         <label for="carga" class="form-label">Tiempos de entrega</label>
@@ -11,7 +11,7 @@
 
       <div class="mb-3">
         <label for="carga" class="form-label">Tiempos de entrega</label>
-        <select id="time-delivery" class="form-select" required>
+        <select id="time-delivery" class="form-select" formControlName= "selectTimeDelivery" required>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -22,7 +22,7 @@
 
       <div class="mb-3">
         <label for="carga" class="form-label">Eficiencia</label>
-        <select id="efficiency" class="form-select" required>
+        <select id="efficiency" class="form-select" formControlName="efficiency" required>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -33,7 +33,7 @@
 
       <div class="mb-3">
         <label for="carga" class="form-label">Cumplimiento de rutas</label>
-        <select id="compliance" class="form-select" required>
+        <select id="compliance" class="form-select" formControlName= "compliance" required>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -42,7 +42,7 @@
         </select>
       </div>
   
-      <button type="submit" class="btn btn-primary" [disabled]="!entregaForm.valid">Enviar</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Enviar</button>
     </form>
   </div>
   

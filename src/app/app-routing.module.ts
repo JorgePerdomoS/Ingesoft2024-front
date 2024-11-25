@@ -15,7 +15,8 @@ const routes: Routes = [
   {path: 'form-entrega', component: FormularioEntregaComponent},
   {path: 'reporte-entrega', component: ReportesFlotaComponent},
   {path: 'vehiculos', component: VehicleLoadsComponent},
-  {path: 'evaluación', component: EvaluateDriverComponent}
+  {path: 'evaluación', component: EvaluateDriverComponent},
+  {path: '', redirectTo: 'login', pathMatch: 'full'}
   
 ];
 

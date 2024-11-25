@@ -1,26 +1,25 @@
 <div class="container mt-5">
     <h2>Formulario para Reportar la Entrega</h2>
-    <form #entregaForm="ngForm" (ngSubmit)="onSubmit(entregaForm)" class="mt-4">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="mt-4">
       <div class="mb-3">
         <label for="destino" class="form-label">Destino</label>
-        <input type="text" id="destino" class="form-control" ngModel name="destino" required>
+        <input type="text" id="destino" class="form-control" ngModel name="destino" formControlName="destino" required>
       </div>
   
       <div class="mb-3">
         <label for="carga" class="form-label">Carga Entregada</label>
-        <input type="text" id="carga" class="form-control" ngModel name="carga" required>
+        <input type="text" id="carga" class="form-control" ngModel name="carga" formControlName="entrega" required>
       </div>
   
       <div class="mb-3">
         <label for="estado" class="form-label">Estado de la Carga</label>
-        <select id="estado" class="form-select" ngModel name="estado" required>
+        <select id="estado" class="form-select" ngModel name="estado" formControlName="estado" required>
           <option value="entregado">Entregado</option>
-          <option value="en_transito">En Tránsito</option>
-          <option value="pendiente">Pendiente</option>
+          <option value="pendiente">En proceso</option>
         </select>
       </div>
   
-      <button type="submit" class="btn btn-primary" [disabled]="!entregaForm.valid">Enviar</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Enviar</button>
     </form>
   </div>
   
